@@ -1,28 +1,76 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <header>
+            <h1>My Music </h1>
+        </header>
+        <section class="player">
+            <h2 class="song-title">{{ current.title }} -<span>
+                {{ current.artist }}
+            </span>
+            </h2>
+            <div class="controls">
+                <button class="prev">Prev</button>
+                <button v-if="!isPlaying" class="play">Play</button>
+                <button v-else class="pause">Pause</button>
+                <button class="next">Next</button>
+            </div>
+        </section>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {},
+    data() {
+        return {
+            index: 0,
+            current: {},
+            isPlaying: false,
+            songs: [
+                {
+                    title: 'Tab',
+                    artist: 'ariyan band',
+                    src: require('./assets/Tab.mp3')
+                },
+                {
+                    title: 'Lahzeha',
+                    artist: 'ariyan band',
+                    src: require('./assets/Lahzeha.mp3')
+                },
+                {
+                    title: 'Ki be joz man',
+                    artist: 'ariyan band',
+                    src: require('./assets/KiBeJozMan.mp3')
+                },
+                {
+                    title: 'Hanoz baram hamoni',
+                    artist: 'ariyan band',
+                    src: require('./assets/HanozBaramHamoni.mp3')
+                },
+                {
+                    title: 'Bi to ba to',
+                    artist: 'ariyan band',
+                    src: require('./assets/BiToBaTo.mp3')
+                },
+            ],
+            player: new Audio()
+        }
+    },
+    created() {
+        this.current = this.songs[this.index]
+        this.player.src = this.current.src
+        // this.player.play()
+    },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.player {
+
+}
+
+.song-title {
 }
 </style>

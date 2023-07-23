@@ -1,4 +1,4 @@
-# music-app
+# simple music player
 
 ## Project setup
 ```
